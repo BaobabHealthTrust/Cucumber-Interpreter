@@ -1,0 +1,160 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <title>Reports Cucumber Stories Application Generator</title>
+        <style type="text/css">
+            button {
+                min-width: 100px;
+                min-height: 50px;
+                margin: 5px;
+                color: #666;
+            }
+            textarea {
+                padding: 10px;
+            }
+        </style>
+        <script type="text/javascript" language="javascript" src="javascripts/cucumber_generate_reports.js"></script>
+    </head>
+    <body>
+        <center>
+            <table width="100%" border=0 cellpadding="1" cellspacing="1">
+                <tr>
+                    <th colspan="2">
+                        <h3 style="color: #666;">Reports Cucumber Spec Application Generator</h3>
+                    </th>
+                </tr>
+                <tr style="background-color: #eee;">
+                    <td width="50%">
+                        <button onclick="document.getElementById('txtinput').value='';
+                            document.getElementById('model').value='';
+                            document.getElementById('action').value='';">
+                            Clear
+                        </button>
+                        <button onclick="cleanUp();">
+                            Clean Quotes
+                        </button>
+                        <button onclick="if(document.getElementById('model').value.match(/^$/)){
+                            alert('Please enter your target model!');
+                            document.getElementById('model').focus();
+                            return;
+                        } else if (document.getElementById('action').value.match(/^$/)){
+                            alert('Please enter your target action!');
+                            document.getElementById('model').focus();
+                            return;
+                        }; interpret(document.getElementById('model').value, document.getElementById('action').value);">
+                            Interpret
+                        </button>
+                        <button onclick="window.location='report.html'" style="float: right;">
+                            Create Specification
+                        </button>
+                    </td>
+                    <td align="right">
+                        <button onclick="window.location='files.zip'" style="float: left;">
+                            Download Supporting Files
+                        </button>
+                        <button onclick="document.getElementById('txtoutput').value='';
+                        document.getElementById('controller').value='';
+                                document.getElementById('modelclass').value='';">
+                            Clear
+                        </button>
+                    </td>
+                </tr>
+                <tr>
+                    <td style="padding-left: 0px; border-right: 1px solid #ccc;">
+                        <h3 style="color: #666; margin-top: 20px; float: left;">Cucumber Spec Input</h3>
+                        <div style="float: right; padding-top: 20px; color: #333; padding-right: 5px;">
+                            <div>
+                                <label>
+                                    Model
+                                </label>
+                                <input type="text" value="reports" id="model"
+                                       style="border: 1px solid #999; padding: 5px; 
+                                       -moz-border-radius: 8px; margin-left: 2px;"/>
+                            </div>
+                            <div style="margin-top: 5px; margin-bottom: 5px;">
+                                <label>
+                                    Action
+                                </label>
+                                <input type="text" value="cohort" id="action"
+                                       style="border: 1px solid #999; padding: 5px; -moz-border-radius: 8px;"/>
+                            </div>
+                        </div>
+                        <textarea id="txtinput" style="width: 100%; height: 250px; border: 1px #999 solid;">
+Feature: Report
+As a clinician
+I would like to extract a report
+So that I can analyse trends at a facility
+
+	Scenario: I have an authorised user
+		Given I am on the "Report" page
+		Then I should see an encounter "Registration"
+		Then I should see a group encounter "Observations"
+		And I should see a child concept "=1"
+		And I should see a child concept "=2"
+		And I should see a child concept "=3"
+		And I should see a child concept "=4"
+		And I should see a child concept ">5"
+		Then I should see a group concept "WEEK OF FIRST VISIT"
+		And I should see a child concept "0-12"
+		And I should see a child concept "13+"
+		Then I should see a group concept "PRE-ECLAMPSIA"
+		And I should see a child concept "NO"
+		And I should see a child concept "YES"
+		Then I should see a group concept "TTV: TOTAL PREVIOUS DOSES"
+		And I should see a child concept "=0 OR =1"
+		And I should see a child concept ">2"
+		Then I should see a group concept "FANSIDA (SP): NUMBER OF TABLETS GIVEN"
+		And I should see a child concept "0"
+		And I should see a child concept ">2"
+		Then I should see a group concept "FEFO: NUMBER OF TABLETS GIVEN"
+		And I should see a child concept ">=0 AND <=119"
+		And I should see a child concept ">120"
+		Then I should see a group concept "SYPHILIS RESULT"
+		And I should see a child concept "Negative"
+		And I should see a child concept "Positive"
+		And I should see a child concept "Unknown"
+		Then I should see a group concept "HIV Test Result"
+		And I should see a child concept "NEGATIVE IN THE LAST 3 MONTHS"
+		And I should see a child concept "POSITIVE EVER"
+		And I should see a child concept "NEGATIVE"
+		And I should see a child concept "POSITIVE"
+		And I should see a child concept "NOT DONE"
+		Then I should see a group concept "ON ART?"
+		And I should see a child concept "NO"
+		And I should see a child concept "YES"
+		And I should see a child concept "!='NO' AND !='YES'"
+		Then I should see a group concept "ON CPT?"
+		And I should see a child concept "YES"
+		And I should see a child concept "NO"
+		Then I should see a group encounter "PMTCT MANAGEMENT"
+		And I should see a child concept "'ON ART?' = 'NO' AND 'NUMBER OF SDNVP GIVEN MOTHER' = 0 AND 'NUMBER OF AZT GIVEN TO MOTHER' = 0"
+		And I should see a child concept "ON ART?"
+		And I should see a child concept "NUMBER OF SDNVP GIVEN MOTHER"
+		And I should see a child concept "NUMBER OF AZT GIVEN TO MOTHER"
+		Then I should see a group concept "NVP BABY?"
+		And I should see a child concept "NO"
+		And I should see a child concept "YES"
+		And I press "Finish"
+		Then I should be on the next page
+                        </textarea>
+                    </td>
+                    <td style="padding-right: 0px; border-left: 1px solid #ccc;">
+                        <h3 style="color: #666; margin-top: 20px; padding-left: 5px;">Application Form Code Output</h3>
+                        <textarea id="txtoutput" style="width: 100%; height: 280px; border: 1px #999 solid;"></textarea>
+                    </td>
+                </tr>
+                <tr>
+                    <td style="vertical-align: top; border-right: 1px solid #ccc;">
+                        <h3 style="color: #666; margin-top: 20px; padding-left: 5px;">Model Stub</h3>
+                        <textarea id="modelclass" style="width: 100%; height: 300px; border: 1px #999 solid;"></textarea>
+                    </td>
+                    <td style="border-left: 1px solid #ccc; vertical-align: top;">
+                        <h3 style="color: #666; margin-top: 20px; padding-left: 5px;">Controller Stub</h3>
+                        <textarea id="controller" style="width: 100%; height: 300px; border: 1px #999 solid;"></textarea>
+                    </td>
+                </tr>
+            </table>
+        </center>
+    </body>
+</html>

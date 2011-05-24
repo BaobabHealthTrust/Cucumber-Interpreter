@@ -1,0 +1,146 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <title>Cucumber Stories Application Generator</title>
+        <style type="text/css">
+            button {
+                min-width: 100px;
+                min-height: 50px;
+                margin: 5px;
+                color: #666;
+            }
+            textarea {
+                padding: 10px;
+            }
+        </style>
+        <script type="text/javascript" language="javascript" src="javascripts/cucumber_generate.js"></script>
+    </head>
+    <body>
+        <center>
+            <table width="100%" border=0 cellpadding="1" cellspacing="1">
+                <tr>
+                    <th colspan="2">
+                        <h3 style="color: #666;">Cucumber Spec Application Generator</h3>
+                    </th>
+                </tr>
+                <tr style="background-color: #eee;">
+                    <td width="50%">
+                        <button onclick="document.getElementById('txtinput').value='';
+                            document.getElementById('model').value='';
+                            document.getElementById('action').value='';">
+                            Clear
+                        </button>
+                        <button onclick="cleanUp();">
+                            Clean Quotes
+                        </button>
+                        <button onclick="if(document.getElementById('model').value.match(/^$/)){
+                            alert('Please enter your target model!');
+                            document.getElementById('model').focus();
+                            return;
+                        } else if (document.getElementById('action').value.match(/^$/)){
+                            alert('Please enter your target action!');
+                            document.getElementById('model').focus();
+                            return;
+                        }; interpret(document.getElementById('model').value, document.getElementById('action').value);">
+                            Interpret
+                        </button>
+                        <button onclick="window.location='spec.html'" style="float: right;">
+                            Create Specification
+                        </button>
+                    </td>
+                    <td align="right">
+                        <button onclick="window.location='files.zip'" style="float: left;">
+                            Download Supporting Files
+                        </button>
+                        <button onclick="document.getElementById('txtoutput').value='';
+                        document.getElementById('controller').value='';
+                        document.getElementById('concepts').value='';
+                        document.getElementById('encounter_types').value='';">
+                            Clear
+                        </button>
+                    </td>
+                </tr>
+                <tr>
+                    <td style="padding-left: 0px; border-right: 1px solid #ccc;">
+                        <h3 style="color: #666; margin-top: 20px; float: left;">Cucumber Spec Input</h3>
+                        <div style="float: right; padding-top: 20px; color: #333; padding-right: 5px;">
+                            <div>
+                                <label>
+                                    Model
+                                </label>
+                                <input type="text" value="" id="model"
+                                       style="border: 1px solid #999; padding: 5px; 
+                                       -moz-border-radius: 8px; margin-left: 2px;"/>
+                            </div>
+                            <div style="margin-top: 5px; margin-bottom: 5px;">
+                                <label>
+                                    Action
+                                </label>
+                                <input type="text" value="" id="action"
+                                       style="border: 1px solid #999; padding: 5px; -moz-border-radius: 8px;"/>
+                            </div>
+                        </div>
+                        <textarea id="txtinput" style="width: 100%; height: 250px; border: 1px #999 solid;">
+Feature: Test Feature
+As a ...
+I would like to ...
+So that...
+
+	Scenario: Test Scenario
+		Given I am on the "Test Feature" page
+		Then I should see "Select Gender"
+		And I should see ""
+		And I should see "Male"
+		And I should see "Female"
+		And I select ""
+		Then I should see "Pregnant?" If "Select Gender" = "Female"
+		Then I fill in "Pregnant?" with "Text"
+		And I press "Finish"
+		Then I should be on the next page
+                        </textarea>
+                    </td>
+                    <td style="padding-right: 0px; border-left: 1px solid #ccc;">
+                        <h3 style="color: #666; margin-top: 20px; padding-left: 5px;">Application Form Code Output</h3>
+                        <textarea id="txtoutput" style="width: 100%; height: 280px; border: 1px #999 solid;"></textarea>
+                    </td>
+                </tr>
+                <tr>
+                    <td style="vertical-align: top; border-right: 1px solid #ccc;">
+                        <!--h3 style="color: #666; margin-top: 20px;">Concepts and Encounter Types</h3-->
+                        <table width="100%" cellspacing="0">
+                            <tr>
+                                <td style="border-right: 1px solid #ccc;">
+                                    <h4 style="color: #666; padding-top: 20px;">Concepts</h4>
+                                    <textarea id="concepts" style="width: 100%; height: 300px; border: 1px #999 solid;"></textarea>
+                                    <button onclick="if(concepts.length > 0){
+                                            ajaxRequest(concepts, '/cucumber_interpreter/db/search.php?concept=');
+                                            } else {
+                                                alert('No Concepts to create.');
+                                            }">
+                                        Create Concept(s)
+                                    </button>
+                                </td>
+                                <td style="border-left: 1px solid #ccc;">
+                                    <h4 style="color: #666; padding-top: 20px; padding-left: 5px;">Encounter Types</h4>
+                                    <textarea id="encounter_types" style="width: 100%; height: 300px; border: 1px #999 solid;"></textarea>
+                                    <button onclick="if(encounter_types.length > 0){
+                                            ajaxRequest(encounter_types, '/cucumber_interpreter/db/search.php?encounter_type=');
+                                            } else {
+                                                alert('No Encounters to create.');
+                                            }" style="float: right;">
+                                        Create Encounter Type(s)
+                                    </button>
+                                </td>
+                            </tr>
+                        </table>
+                    </td>
+                    <td style="border-left: 1px solid #ccc; vertical-align: top;">
+                        <h3 style="color: #666; margin-top: 20px; padding-left: 5px;">Controller Stub</h3>
+                        <textarea id="controller" style="width: 100%; height: 300px; border: 1px #999 solid;"></textarea>
+                    </td>
+                </tr>
+            </table>
+        </center>
+    </body>
+</html>
