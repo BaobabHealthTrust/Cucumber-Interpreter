@@ -1,96 +1,141 @@
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html>
     <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>Cucumber Stories Prototype Generator</title>
+        <title>Baobab Systems Specification and Application  Generators</title>
         <style type="text/css">
             button {
-                min-width: 100px;
-                min-height: 50px;
-                margin: 5px;
-                color: #666;
+                height: 60px;
+                width: 100%;
+                margin-bottom: 5px;
+                font-size: 1.0em;
+                color: #555;
+                cursor: pointer;
             }
-            textarea {
-                padding: 10px;
+            .over {
+                background-color: #4d9d26;
+                color: #fff;
+                border: 3px double #fff;
+                float: right;
+                -moz-border-radius: 10px;
+            }
+            .out {
+                background-color: #fff;
+                color: #4d9d26;
+                border: 1px solid #4d9d26;
+                float: right;
+                -moz-border-radius: 10px;
             }
         </style>
-        <script type="text/javascript" language="javascript" src="javascripts/cucumber_decode.js"></script>
+        <script type="text/javascript" language="javascript">
+            <!--
+
+            function navto(url){
+                document.getElementById("url").value = url;
+                document.getElementById("main").setAttribute("src", url);
+            }
+
+            function animate(){
+
+                for(var i = 1; i < 6; i++){
+                    if(document.getElementById("button" + i).style.cssFloat == "none") {
+                        document.getElementById("button" + i).style.cssFloat = "right";
+                    } else if(document.getElementById("button" + i).style.cssFloat == "right"){
+                        document.getElementById("button" + i).style.cssFloat = "left";
+                    } else if(document.getElementById("button" + i).style.cssFloat == "left") {
+                        document.getElementById("button" + i).style.cssFloat = "none";
+                    }
+                }
+                setTimeout("animate()", 5000);
+            }
+
+            //setTimeout("animate()", 5000);
+            
+            //-->
+        </script>
     </head>
     <body>
         <center>
-            <table width="100%" border=0 cellpadding="1" cellspacing="1">
-                <tr>
-                    <th colspan="2">
-                        <h3 style="color: #666;">Cucumber Spec Interpreter</h3>
-                    </th>
-                </tr>
-                <tr style="background-color: #eee;">
-                    <td width="50%">
-                        <button onclick="document.getElementById('txtinput').value='';">
-                            Clear
-                        </button>
-                        <button onclick="cleanUp();">
-                            Clean Quotes
-                        </button>
-                        <button onclick="interpret();">
-                            Interpret 
-                        </button>
-                        <button onclick="window.location='spec.html'" style="float: right;">
-                            Create Specification
-                        </button>
-                    </td>
-                    <td align="right">
-                        <button onclick="window.location='files.zip'" style="float: left;">
-                            Download Supporting Files
-                        </button>
-                        <button onclick="document.getElementById('txtoutput').value='';
-                            document.getElementById('hiddenoutput').value='';
-                            document.getElementById('main').src = ''; document.getElementById('preview').src = '';">
-                            Clear
-                        </button>
-                    </td>
-                </tr>
-                <tr>
-                    <td style="padding-left: 0px; border-right: 1px solid #ccc;">
-                        <h3 style="color: #666; margin-top: 20px;">Cucumber Spec Input</h3>
-                        <textarea id="txtinput" style="width: 100%; height: 250px; border: 1px #999 solid;">
-Feature: Test Feature
-As a ...
-I would like to ...
-So that...
-
-	Scenario: Test Scenario
-		Given I am on the "Test Feature" page
-		Then I should see "Select Gender"
-		And I should see ""
-		And I should see "Male"
-		And I should see "Female"
-		And I select ""
-		Then I should see "Pregnant?" If "Select Gender" = "Female"
-		Then I fill in "Pregnant?" with "Text"
-		And I press "Finish"
-		Then I should be on the next page
-                        </textarea>
-                    </td>
-                    <td style="padding-right: 0px; border-left: 1px solid #ccc;">
-                        <h3 style="color: #666; margin-top: 20px;">HTML Prototype Code Output</h3>
-                        <textarea id="txtoutput" style="width: 100%; height: 250px; border: 1px #999 solid;"></textarea>
-                        <input id="hiddenoutput" type="hidden" value="">
-                    </td>
-                </tr>
-                <tr>
-                    <td colspan="2">
-                        <h3 style="color: #666; margin-top: 20px;">HTML Preview</h3>
-                        <iframe src="" id="main" width="100%" height="900px" style="border: #999 1px solid;"></iframe>
-                    </td>
-                </tr>
-                <tr>
-                    <td colspan="2">
-                        <h3 style="color: #666; margin-top: 20px;">TouchScreen Preview</h3>
-                        <iframe src="" id="preview" width="100%" height="800px" style="border: #999 1px solid;"></iframe>
-                    </td>
-                </tr>
-            </table>
+            <div style="display: table; width: 100%; margin-top: 0px;">
+                <div style="display: table-row">
+                    <div style="display: table-cell; text-align: center; vertical-align: middle; width: 310px;">
+                        <h1 style="border: 1px solid #4d9d26; padding: 20px; -moz-border-radius: 10px;
+                            font-weight: normal;">
+                            <span style="color: #eabc30;">Baobab</span><span style="color:#4d9d26"> Health</span>
+                        </h1>
+                    </div>
+                    <div style="display: table-cell; text-align: center; ">
+                        <h3 style="border: 3px double #fff; padding: 27px; font-weight: normal;
+                            -moz-border-radius: 10px; background-color: #4d9d26; color: #fff;">
+                            Systems Specification and Application Generators
+                        </h3>
+                    </div>
+                </div>
+            </div>
+            <div style="background-color: #4d9d26; border: 1px solid #4d9d26; margin-top: -15px;
+                 margin-bottom: 5px; padding: 5px; text-align: right; color: #fff; -moz-border-radius: 10px;">
+                <div>
+                    <input type="text" value="" id="url" style="border: 1px solid #4d9d26;
+                           -moz-border-radius: 10px; padding: 5px; width: 500px; color: #4d9d26;" />
+                    <button style="width: 35px; height: 30px; background-color: #fff; color: #4d9d26; -moz-border-radius: 15px;"
+                            onclick="navto(document.getElementById('url').value.trim());">
+                        Go
+                    </button>
+                </div>
+            </div>
+            <div style="display: table; width: 100%;">
+                <div style="display: table-row;">
+                    <div style="display: table-cell; width: 310px; vertical-align: top;">
+                        <div style="display: table;">
+                            <div style="display: table-row; text-align: center; border: 1px solid #4d9d26;">
+                                <div style="display: table-cell">
+                                    <button id="button1" class="out" onmouseover="this.className = 'over';"
+                                            onmouseout="this.className = 'out';"
+                                            onclick="navto('spec.html');">
+                                        Cucumber Specification Generator
+                                    </button>
+                                </div>
+                            </div>
+                            <div style="display: table-row; text-align: center; border: 1px solid #4d9d26;">
+                                <div style="display: table-cell">
+                                    <button id="button2" class="out" onmouseover="this.className = 'over';"
+                                            onmouseout="this.className = 'out';"
+                                            onclick="navto('report.html');">
+                                        Report Specification Generator
+                                    </button>
+                                </div>
+                            </div>
+                            <div style="display: table-row; text-align: center; border: 1px solid #4d9d26;">
+                                <div style="display: table-cell">
+                                    <button id="button3" class="out" onmouseover="this.className = 'over';"
+                                            onmouseout="this.className = 'out';"
+                                            onclick="navto('generate.html');">
+                                        Cucumber Application Generator
+                                    </button>
+                                </div>
+                            </div>
+                            <div style="display: table-row; text-align: center; border: 1px solid #4d9d26;">
+                                <div style="display: table-cell">
+                                    <button id="button4" class="out" onmouseover="this.className = 'over';"
+                                            onmouseout="this.className = 'out';"
+                                            onclick="navto('generate_report.html');">
+                                        Report Generator
+                                    </button>
+                                </div>
+                            </div>
+                            <div style="display: table-row; text-align: center; border: 1px solid #4d9d26;">
+                                <div style="display: table-cell">
+                                    <button id="button5" onclick="navto('interpreter.html');"
+                                            class="out" onmouseover="this.className = 'over';" onmouseout="this.className = 'out';">
+                                        Cucumber Specification Interpreter
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div style="display: table-cell; background-color: #fff; height: 600px;">
+                        <iframe id="main" style="width: 100%; height: 100%; border: 1px solid #4d9d26;"></iframe>
+                    </div>
+                </div>
+            </div>
         </center>
     </body>
 </html>
