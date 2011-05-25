@@ -528,6 +528,33 @@ function addHomePageControl(id){
                 this.parentNode.appendChild(selectoptions);
 
             }
+        } else if(this[this.selectedIndex].value == "tab" || this[this.selectedIndex].value == "button_link"){
+            if(!document.getElementById(this.id + "_select_options")){
+                var selectoptions = document.createElement("input");
+                selectoptions.type = "text";
+                selectoptions.id = this.id + "_select_options";
+                selectoptions.style.width = "100%";
+                selectoptions.style.padding = "5px";
+                selectoptions.style.marginTop = "6px";
+                selectoptions.style.marginBottom = "6px";
+                selectoptions.value = "<Enter relative path of the page the button will be linked to e.g. 'visit_history.html'>";
+                selectoptions.className = "initial";
+                selectoptions.onclick = function(){
+                    if(this.value.match(/<Enter\srelative\spath\sof\sthe/)){
+                        this.className = "actual";
+                        this.value = "";
+                    }
+                }
+                selectoptions.onmouseout = function(){
+                    if(this.value.length <= 0){
+                        this.className = "initial";
+                        this.value = "<Enter relative path of the page the button will be linked to e.g. 'visit_history.html'>";
+                    }
+                }
+
+                this.parentNode.appendChild(selectoptions);
+
+            }
         } else if(document.getElementById(this.id + "_select_options")) {
             document.getElementById(this.id +
                 "_select_options").parentNode.removeChild(document.getElementById(this.id + "_select_options"))
@@ -539,7 +566,8 @@ function addHomePageControl(id){
     var options = {
         "&lt;Select Control Type&gt;":"",
         "Project Name":"project",
-        "Tab":"tab"
+        "Tab":"tab",
+        "Navigation Button":"button_link"
     }
 
     for(var option in options){
