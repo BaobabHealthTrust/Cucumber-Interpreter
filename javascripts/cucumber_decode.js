@@ -230,7 +230,9 @@ function interpret(){
         } else if(s[i].trim().match(/^And\s+I\s+press(\s+)?"finish"/i)){
             document.getElementById("txtoutput").value +=
             "<tr>\n<td align='center'>\n<input type='submit' value='Finish' />\n</td>\n</tr>\n" +
-            "</table>\n</form>\n</center>\n</div>\n</body>\n</html>";
+            "</table>\n<span id='facility'>Facility Name</span>\n<span id='user'>Current User</span>" +
+            "<span id='location'>Location Name</span>\n<span id='date'><span style='color: #f00;'>" +
+            "15-Dec-2010</span></span>\n</form>\n</center>\n</div>\n</body>\n</html>";
 
             document.getElementById("hiddenoutput").value +=
             "<tr>\n<td align='center'>\n<input type='submit' value='Finish' />\n</td>\n</tr>\n" +
